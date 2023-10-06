@@ -1,0 +1,8 @@
+en:
+  books:
+    create:
+      success_create: 'Book was successfully created.'
+    update:
+      success_update: 'Book was successfully updated.'
+    destroy:
+      success_destroy: 'Book was successfully destroyed.'
