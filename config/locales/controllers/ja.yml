@@ -1,0 +1,8 @@
+ja:
+  books:
+    create:
+      success_create: '本が正常に登録出来ました。'
+    update:
+      success_update: '本が正常に更新出来ました。'
+    destroy:
+      success_destroy: '本が正常に消去出来ました。'

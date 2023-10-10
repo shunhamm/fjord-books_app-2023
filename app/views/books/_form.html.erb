@@ -1,7 +1,7 @@
 <%= form_with(model: book) do |form| %>
   <% if book.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>
+      <h2><%= pluralize(book.errors.count, "error") %><%= t('.warning')%></h2>
 
       <ul>
         <% book.errors.each do |error| %>
@@ -12,26 +12,26 @@
   <% end %>
 
   <div>
-    <%= form.label :title, style: "display: block" %>
+    <%= form.label :title, t('.title'), style: "display: block" %>
     <%= form.text_field :title %>
   </div>
 
   <div>
-    <%= form.label :memo, style: "display: block" %>
+    <%= form.label :memo, t('.memo'), style: "display: block" %>
     <%= form.text_area :memo %>
   </div>
 
   <div>
-    <%= form.label :author, style: "display: block" %>
+    <%= form.label :author, t('.author') ,style: "display: block" %>
     <%= form.text_field :author %>
   </div>
 
   <div>
-    <%= form.label :picture, style: "display: block" %>
+    <%= form.label :picture, t('.picture') ,style: "display: block" %>
     <%= form.file_field :picture %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit t('.submit')%>
   </div>
 <% end %>

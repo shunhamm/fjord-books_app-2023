@@ -1,0 +1,34 @@
+en:
+  books:
+    _book:
+      title: 'Title:'
+      memo: 'Memo:'
+      author: 'Author:'
+      picture:  'Picture:'
+
+    index:
+      title: 'Books'
+      show_this_message: 'Show this book'
+      new_book: 'New book'
+
+    edit:
+      title: 'Editing book'
+      show_book: 'Show this book'
+      back: Back to books'
+
+    new:
+      title: 'New book'
+      back: 'Back to books'
+
+    show:
+      edit: 'Edit this book'
+      back: 'Back to books'
+      destroy: 'Destroy this book'
+
+    form:
+      warning: 'prohibited this book from being saved:'
+      title: 'Title:'
+      memo: 'Memo:'
+      author: 'Author:'
+      picture: 'Picture:'
+      submit: 'Submit'

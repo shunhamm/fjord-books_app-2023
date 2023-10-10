@@ -1,0 +1,34 @@
+ja:
+  books:
+    book:
+      title: '本のタイトル' 
+      memo: '概要'
+      author: '著者'
+      picture: '表紙'
+
+    index:
+      title: '本一覧'
+      show_this_book: '本の詳細'
+      new_book: '新しい本を登録する'
+    
+    edit:
+      title: '本の編集'
+      show_book: '本の詳細'
+      back: '本一覧に戻る'
+
+    new:
+      title: '新しい本を登録する'
+      back: '本一覧に戻る'
+
+    show:
+      edit: '本を編集する'
+      back: '本一覧に戻る'
+      destroy: '本を消去する'
+
+    form:
+      warning: 'この本は保存出来ません。'
+      title: 'タイトル:'
+      memo: 'メモ:'
+      author: '著者:'
+      picture: '写真:'
+      submit: '投稿'
