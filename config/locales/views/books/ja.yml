@@ -1,11 +1,14 @@
 ja:
+  activerecord:
+    models:
+      book: '本'
+    attributes:
+      book:
+        title: 'タイトル'
+        address: '住所'
+        author: '著者'
+        picture: '写真'
   books:
-    book:
-      title: '本のタイトル' 
-      memo: '概要'
-      author: '著者'
-      picture: '表紙'
-
     index:
       title: '本一覧'
       show_this_book: '本の詳細'
@@ -27,8 +30,4 @@ ja:
 
     form:
       warning: 'この本は保存出来ません。'
-      title: 'タイトル:'
-      memo: 'メモ:'
-      author: '著者:'
-      picture: '写真:'
       submit: '投稿'

@@ -1,11 +1,14 @@
 en:
+  activerecord:
+    models:
+      book: 'books'
+    attributes:
+      book:
+        title: 'title'
+        address: 'address'
+        author: 'author'
+        picture: 'picture'
   books:
-    _book:
-      title: 'Title:'
-      memo: 'Memo:'
-      author: 'Author:'
-      picture:  'Picture:'
-
     index:
       title: 'Books'
       show_this_message: 'Show this book'
@@ -27,8 +30,4 @@ en:
 
     form:
       warning: 'prohibited this book from being saved:'
-      title: 'Title:'
-      memo: 'Memo:'
-      author: 'Author:'
-      picture: 'Picture:'
       submit: 'Submit'
