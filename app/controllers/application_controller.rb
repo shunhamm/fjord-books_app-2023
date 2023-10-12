@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sigh_up, keys: %i[address self_introduction])
+    devise_parameter_sanitizer.permit(:edit, keys: %i[address self_introduction])
   end
   before_action :authenticate_user!
 end
