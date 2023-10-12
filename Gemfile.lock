@@ -285,7 +285,7 @@ DEPENDENCIES
   i18n_generators
   importmap-rails
   jbuilder
-  kaminari (~> 0.17.0)
+  kaminari
   puma
   rails (~> 7.0.6)
   rubocop (~> 1.45.1)
