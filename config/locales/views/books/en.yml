@@ -1,0 +1,33 @@
+en:
+  activerecord:
+    models:
+      book: 'books'
+    attributes:
+      book:
+        title: 'title'
+        address: 'address'
+        author: 'author'
+        picture: 'picture'
+  books:
+    index:
+      title: 'Books'
+      show_this_message: 'Show this book'
+      new_book: 'New book'
+
+    edit:
+      title: 'Editing book'
+      show_book: 'Show this book'
+      back: Back to books'
+
+    new:
+      title: 'New book'
+      back: 'Back to books'
+
+    show:
+      edit: 'Edit this book'
+      back: 'Back to books'
+      destroy: 'Destroy this book'
+
+    form:
+      warning: 'prohibited this book from being saved:'
+      submit: 'Submit'
