@@ -46,7 +46,7 @@ User.destroy_all
 
 50.times do |n|
   name = Faker::Name.name
-  User.create!(
+  user = User.create!(
     email: "sample-#{n}@example.com",
     password: 'password',
     name:,
@@ -54,6 +54,8 @@ User.destroy_all
     address: Faker::Address.full_address,
     self_introduction: "こんにちは、#{name}です。"
   )
+  avatar_path = Rails.root.join('storage/.png')
+  user.avatar.attach(io: File.open(avatar_path), filename: '.png', content_type: 'image/png')
 end
 
 puts '初期データの投入が完了しました。' # rubocop:disable Rails/Output
