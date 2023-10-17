@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'books#index'
   resources :books
-  resoueces :reports
+  resources :reports
   resources :users, only: %i(index show)
 end
