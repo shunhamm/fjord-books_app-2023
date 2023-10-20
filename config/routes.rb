@@ -5,5 +5,11 @@ Rails.application.routes.draw do
   resources :books
   resources :reports
   resources :comments
+  resources :books do
+    resources :comments
+  end
+  resources :reports do
+    resources :comments
+  end
   resources :users, only: %i(index show)
 end

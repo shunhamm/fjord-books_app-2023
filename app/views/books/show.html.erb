@@ -4,6 +4,24 @@
   <%= render @book %>
 </div>
 
+<h3><strong>コメント一覧</strong></h3>
+<div id="comments" class="index-items">
+  <% if @comments.nil? || @comments.empty?%>
+      <p><strong>コメントはありません。</strong></p>
+  <% else %>
+    <% @comments.each do |comment| %>
+      <div class="index-item">
+        <p>
+          <%= render '/comments/comment', comment: comment%>
+        </p>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<h3><strong>新規投稿</strong></h3>
+<%= render '/comments/form', book: @book%>
+
 <nav class="page-nav">
   <%= link_to t('views.common.edit', name: Book.model_name.human.downcase), edit_book_path(@book) %> |
   <%= link_to t('views.common.back', name: i18n_pluralize(Book.model_name.human.downcase)), books_path %>
