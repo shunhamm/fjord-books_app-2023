@@ -6,13 +6,13 @@
 
 <h3><strong>コメント一覧</strong></h3>
 <div id="comments" class="index-items">
-  <% if @comments.nil? || @comments.empty?%>
+  <% if @comments.nil? || @comments.empty? %>
       <p><strong>コメントはありません。</strong></p>
   <% else %>
     <% @comments.each do |comment| %>
       <div class="index-item">
         <p>
-          <%= render '/comments/comment', comment: comment%>
+          <%= render '/comments/comment', comment: comment %>
         </p>
       </div>
     <% end %>
@@ -20,7 +20,7 @@
 </div>
 
 <h3><strong>新規投稿</strong></h3>
-<%= render '/comments/form', book: @book%>
+<%= render '/comments/form', comment: @book.comments.build %>
 
 <nav class="page-nav">
   <%= link_to t('views.common.edit', name: Book.model_name.human.downcase), edit_book_path(@book) %> |

@@ -1,10 +1,11 @@
 <div id="<%= dom_id comment %>">
-
   <p>
-    <%= Comment.human_attribute_name(:user_id) %>:
-    <%= comment.user_id %>
+    <% if comment.user.avatar.attached? %>
+      <br>
+      <%= image_tag comment.user.avatar.variant(:thumb) %>
+    <% end %>
+    <strong><%= comment.user.name %>:</strong><br>
     <strong><%= Comment.human_attribute_name(:body) %>:</strong>
     <%= comment.body %>
   </p>
-
 </div>
