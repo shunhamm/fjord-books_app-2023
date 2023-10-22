@@ -6,7 +6,7 @@
 
 <h3><strong>コメント一覧</strong></h3>
 <div id="comments" class="index-items">
-  <% if @comments.nil? || @comments.empty? %>
+  <% if @comments.blank? %>
       <p><strong>コメントはありません。</strong></p>
   <% else %>
     <% @comments.each do |comment| %>
