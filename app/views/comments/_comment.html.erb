@@ -26,3 +26,7 @@
     <%= comment.created_at %>
   </p>
 </div>
+
+<nav class="page-nav">
+  <%= button_to t('views.common.destroy', name: Comment.model_name.human.downcase), [comment.commentable, comment], method: :delete %>
+</nav>
