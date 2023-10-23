@@ -4,10 +4,10 @@
   <%= render @report %>
 </div>
 
-<h3><strong>コメント一覧</strong></h3>
+<h3><strong><%= t('views.common.title_index', name: Comment.model_name.human) %></strong></h3>
 <div id="comments" class="index-items">
   <% if @comments.nil? || @comments.empty? %>
-      <p><strong>コメントはありません。</strong></p>
+      <p><strong><%= t('views.common.not_exist', name: Comment.model_name.human) %></strong></p>
   <% else %>
     <% @comments.each do |comment| %>
       <div class="index-item">
@@ -19,7 +19,7 @@
   <% end %>
 </div>
 
-<h3><strong>新規投稿</strong></h3>
+<h3><strong><%= t('views.common.title_new', name: Comment.model_name.human) %></strong></h3>
 <%= render '/comments/form', comment: @report.comments.build %>
 
 <nav class="page-nav">
