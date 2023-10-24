@@ -4,7 +4,7 @@
     <% if user.avatar.attached? %>
       <%= image_tag user.avatar.variant(:thumb) %>
     <% else %>
-      <strong><%= t( 'views.common.not_attached' ) %></strong>
+      <strong><%= t('views.common.not_attached') %></strong>
     <% end %>
   </p>
 
