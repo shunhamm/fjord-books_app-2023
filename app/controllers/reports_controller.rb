@@ -54,6 +54,7 @@ class ReportsController < ApplicationController
   end
 
   def create_report_link
+    @report.report_links.destroy_all
     mentioning_report_ids = @report.content.scan(%r{http://127.0.0.1:3000/reports/(\d+)})
     return if mentioning_report_ids.empty?
 
