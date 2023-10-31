@@ -2,14 +2,6 @@
 
 class CommentsController < ApplicationController
   before_action :set_comment, only: %i[destroy]
-  before_action :set_commentable
-  def new
-    @comment = Comment.new
-  end
-
-  def index
-    @comments = Comment.all
-  end
 
   def create
     @comment = @commentable.comments.build(comment_params)
@@ -28,12 +20,6 @@ class CommentsController < ApplicationController
   end
 
   private
-
-  # https://nekorails.hatenablog.com/entry/2019/06/13/031003　より
-  def set_commentable
-    resource, id = request.path.split('/')[1, 2]
-    @commentable = resource.singularize.classify.constantize.find(id)
-  end
 
   def set_comment
     @comment = Comment.find(params[:id])

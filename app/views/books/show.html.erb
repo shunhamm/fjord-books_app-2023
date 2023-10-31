@@ -12,7 +12,7 @@
     <% @comments.each do |comment| %>
       <div class="index-item">
         <p>
-          <%= render '/comments/comment', comment: comment %>
+          <%= render '/comments/comment', { comment: comment } %>
         </p>
       </div>
     <% end %>
@@ -20,7 +20,7 @@
 </div>
 
 <h3><strong>新規投稿</strong></h3>
-<%= render '/comments/form', comment: @book.comments.build %>
+<%= render '/comments/form', { commentable: @book } %>
 
 <nav class="page-nav">
   <%= link_to t('views.common.edit', name: Book.model_name.human.downcase), edit_book_path(@book) %> |
