@@ -6,7 +6,7 @@
 
 <h3><strong><%= t('views.common.title_index', name: Comment.model_name.human) %></strong></h3>
 <div id="comments" class="index-items">
-  <% if @comments.nil? || @comments.empty? %>
+  <% if @comments.blank? %>
       <p><strong><%= t('views.common.not_exist', name: Comment.model_name.human) %></strong></p>
   <% else %>
     <% @comments.each do |comment| %>

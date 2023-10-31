@@ -4,6 +4,7 @@ class CreateReports < ActiveRecord::Migration[7.0]
       t.string :title
       t.text :contents
 
+      t.references :user
       t.timestamps
     end
   end
