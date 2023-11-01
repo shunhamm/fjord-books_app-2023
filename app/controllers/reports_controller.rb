@@ -35,6 +35,8 @@ class ReportsController < ApplicationController
 
   # PATCH/PUT /reports/1 or /reports/1.json
   def update
+    return redirect_to reports_path, notice: t('errors.messages.unmatched_user', name: current_user.name) unless @report.user.id == current_user.id
+
     if @report.update(report_params)
       redirect_to report_url(@report), notice: t('controllers.common.notice_update', name: Report.model_name.human)
     else
@@ -44,6 +46,8 @@ class ReportsController < ApplicationController
 
   # DELETE /reports/1 or /reports/1.json
   def destroy
+    return redirect_to reports_path, notice: t('errors.messages.unmatched_user', name: current_user.name) unless @report.user.id == current_user.id
+
     @report.destroy
 
     redirect_to reports_url, notice: t('controllers.common.notice_destroy', name: Report.model_name.human)
