@@ -11,9 +11,7 @@
   <% else %>
     <% @comments.each do |comment| %>
       <div class="index-item">
-        <p>
           <%= render '/comments/comment', { comment: comment } %>
-        </p>
       </div>
     <% end %>
   <% end %>
