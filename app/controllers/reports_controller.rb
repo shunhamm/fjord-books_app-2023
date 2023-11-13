@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class ReportsController < ApplicationController
-  before_action :set_report, only: %i[show edit update destroy]
+  before_action :set_report, only: %i[show edit]
+  before_action :set_current_user_report, only: %i[update destroy]
 
   # GET /reports or /reports.json
   def index
@@ -35,9 +36,7 @@ class ReportsController < ApplicationController
 
   # PATCH/PUT /reports/1 or /reports/1.json
   def update
-    return redirect_to reports_path, notice: t('errors.messages.unmatched_user', name: current_user.name) unless @report.user.id == current_user.id
-
-    if @report.update(report_params)
+    if @report.update!(report_params)
       redirect_to report_url(@report), notice: t('controllers.common.notice_update', name: Report.model_name.human)
     else
       render :edit, status: :unprocessable_entity
@@ -46,11 +45,11 @@ class ReportsController < ApplicationController
 
   # DELETE /reports/1 or /reports/1.json
   def destroy
-    return redirect_to reports_path, notice: t('errors.messages.unmatched_user', name: current_user.name) unless @report.user.id == current_user.id
-
-    @report.destroy
-
-    redirect_to reports_url, notice: t('controllers.common.notice_destroy', name: Report.model_name.human)
+    if @report.destroy!
+      redirect_to reports_url, notice: t('controllers.common.notice_destroy', name: Report.model_name.human)
+    else
+      render :show, status: :unprocessable_entity
+    end
   end
 
   private
@@ -58,6 +57,10 @@ class ReportsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_report
     @report = Report.find(params[:id])
+  end
+
+  def set_current_user_report
+    @report = current_user.reports.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.

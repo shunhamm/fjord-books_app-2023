@@ -9,10 +9,8 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
-    return redirect_to [@commentable], notice: t('errors.messages.unmatched_user', name: current_user.name) unless @comment.user.id == current_user.id
-
-    @comment.destroy
+    @comment = current_user.comments.find(params[:id])
+    @comment.destroy!
 
     redirect_to [@commentable], notice: t('controllers.common.notice_destroy', name: Comment.model_name.human)
   end
