@@ -13,13 +13,12 @@ ja:
         picture: 画像
         title: タイトル
       user:
-        name: 氏名
+        name: 投稿者
         postal_code: 郵便番号
         address: 住所
         self_introduction: 自己紹介文
         avatar: ユーザ画像
       report:
-        user_name: 投稿者
         title: タイトル
         contents: 内容
       comment:
