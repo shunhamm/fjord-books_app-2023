@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 class ReportLink < ApplicationRecord
-  belongs_to :report
-  belongs_to :to_report, class_name: 'Report', foreign_key: 'report_id'
+  belongs_to :from_report, class_name: 'Report', inverse_of: :report_links
+  belongs_to :to_report, class_name: 'Report', inverse_of: :my_report_links
 
-  validates :report_id, presence: true
-  validates :to_report_id, presence: true
+  validates :from_report, uniqueness: { scope: :to_report, message: 'その言及関係の組み合わせは既に存在します。' }
 end
