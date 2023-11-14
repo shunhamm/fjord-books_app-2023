@@ -22,7 +22,7 @@ class ReportsController < ApplicationController
     @report = current_user.reports.new(report_params)
 
     if @report.save
-      create_report_link
+      @report.create_report_link
       redirect_to @report, notice: t('controllers.common.notice_create', name: Report.model_name.human)
     else
       render :new, status: :unprocessable_entity
@@ -31,7 +31,7 @@ class ReportsController < ApplicationController
 
   def update
     if @report.update(report_params)
-      create_report_link
+      @report.create_report_link
       redirect_to @report, notice: t('controllers.common.notice_update', name: Report.model_name.human)
     else
       render :edit, status: :unprocessable_entity
@@ -51,16 +51,5 @@ class ReportsController < ApplicationController
 
   def report_params
     params.require(:report).permit(:title, :content)
-  end
-
-  def create_report_link
-    @report.report_links.destroy_all
-    mentioning_report_ids = @report.content.scan(%r{http://127.0.0.1:3000/reports/(\d+)})
-    return if mentioning_report_ids.empty?
-
-    mentioning_report_ids.each do |id|
-      to_report = Report.find(id[0].to_i)
-      @report.link(to_report)
-    end
   end
 end
