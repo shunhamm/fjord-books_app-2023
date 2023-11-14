@@ -1,10 +1,10 @@
-<div class="report-container">
-  <% if (report_links = @report.my_report_links.order(:id).presence) %>
-    <h3>この日報に言及している日報があります。</h3>
+<div>
+  <% if (report_links = @report.mentioned_reports) %>
+    <h3><%= t('.mentions') %></h3>
     <ul>
       <% report_links.each do |report_link| %>
         <li>
-            <%= link_to "#{report_link.report.user.name}: #{report_link.report.title}", report_link.report %>
+          <%= link_to "#{report_link.from_report.user.name}: #{report_link.from_report.title}", report_link.from_report %>
         </li>
       <% end %>
     </ul>
