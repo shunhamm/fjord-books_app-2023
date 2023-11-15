@@ -15,7 +15,6 @@ class Report < ApplicationRecord
   def create_report_link
     mentioned_links.destroy_all
     mentioning_report_ids = content.scan(%r{http://127.0.0.1:3000/reports/(\d+)})
-    return if mentioning_report_ids.empty?
 
     mentioning_report_ids.each do |id|
       mentioning_report = Report.find(id[0].to_i)
