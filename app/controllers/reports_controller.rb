@@ -19,14 +19,18 @@ class ReportsController < ApplicationController
   def edit; end
 
   def create
-    @report = current_user.reports.new(report_params)
+    ActiveRecord::Base.transaction do
+      @report = current_user.reports.new(report_params)
 
-    if @report.save
-      @report.create_report_link
-      redirect_to @report, notice: t('controllers.common.notice_create', name: Report.model_name.human)
-    else
-      render :new, status: :unprocessable_entity
+      if @report.save
+        @report.create_report_link
+        redirect_to @report, notice: t('controllers.common.notice_create', name: Report.model_name.human)
+      else
+        render :new, status: :unprocessable_entity
+        raise ActiveRecord::Rollback
+      end
     end
+    render :new, status: :unprocessable_entity unless @report.persisted?
   end
 
   def update
