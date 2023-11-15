@@ -60,13 +60,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_24_081533) do
   end
 
   create_table "report_links", force: :cascade do |t|
-    t.integer "from_report_id"
-    t.integer "to_report_id"
+    t.integer "mentioned_report_id"
+    t.integer "mentioning_report_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["from_report_id", "to_report_id"], name: "index_report_links_on_from_report_id_and_to_report_id", unique: true
-    t.index ["from_report_id"], name: "index_report_links_on_from_report_id"
-    t.index ["to_report_id"], name: "index_report_links_on_to_report_id"
+    t.index ["mentioned_report_id", "mentioning_report_id"], name: "index_mentioning_mentioned_report_ids", unique: true
+    t.index ["mentioned_report_id"], name: "index_report_links_on_mentioned_report_id"
+    t.index ["mentioning_report_id"], name: "index_report_links_on_mentioning_report_id"
   end
 
   create_table "reports", force: :cascade do |t|
@@ -97,7 +97,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_24_081533) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "users"
-  add_foreign_key "report_links", "reports", column: "from_report_id"
-  add_foreign_key "report_links", "reports", column: "to_report_id"
+  add_foreign_key "report_links", "reports", column: "mentioned_report_id"
+  add_foreign_key "report_links", "reports", column: "mentioning_report_id"
   add_foreign_key "reports", "users"
 end
