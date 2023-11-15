@@ -1,0 +1,29 @@
+<div id="<%= dom_id comment %>">
+  <p>
+    <% if comment.user.avatar.attached? %>
+      <br>
+      <%= image_tag comment.user.avatar.variant(:thumb) %>
+    <% end %>
+  </p>
+
+  <p>
+    <strong><%= User.human_attribute_name(:name) %>:</strong>
+    <%= comment.user.name_or_email %>
+  </p>
+
+  <p>
+    <strong><%= Comment.human_attribute_name(:body) %>:</strong>
+    <%= comment.body %>
+  </p>
+
+  <p>
+    <strong><%= Comment.human_attribute_name(:created_at) %>:</strong>
+    <%= comment.created_at %>
+  </p>
+</div>
+
+<% if comment.user.id == current_user.id %>
+  <nav class="page-nav">
+    <%= button_to t('views.common.destroy', name: Comment.model_name.human.downcase), [comment.commentable, comment], method: :delete %>
+  </nav>
+<% end %>

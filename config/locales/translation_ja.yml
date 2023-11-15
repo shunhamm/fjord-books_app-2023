@@ -2,7 +2,9 @@ ja:
   activerecord:
     models:
       book: 本
+      report: 日報
       user: ユーザ
+      comment: コメント
 
     attributes:
       book:
@@ -11,8 +13,13 @@ ja:
         picture: 画像
         title: タイトル
       user:
-        name: 氏名
+        name: 投稿者
         postal_code: 郵便番号
         address: 住所
         self_introduction: 自己紹介文
         avatar: ユーザ画像
+      report:
+        title: タイトル
+        contents: 内容
+      comment:
+        body: コメント
