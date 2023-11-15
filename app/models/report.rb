@@ -22,12 +22,6 @@ class Report < ApplicationRecord
     end
   end
 
-  def link(mentioning_report)
-    return if self == mentioning_report
-
-    mentioned_links.find_or_create_by!(mentioning_report_id: mentioning_report.id)
-  end
-
   def editable?(target_user)
     user == target_user
   end
@@ -43,4 +37,12 @@ class Report < ApplicationRecord
   def mentioned_reports
     my_mentioned_links.order(:id).presence
   end
+end
+
+private
+
+def link(mentioning_report)
+  return if self == mentioning_report
+
+  mentioned_links.find_or_create_by!(mentioning_report_id: mentioning_report.id)
 end
