@@ -1,0 +1,30 @@
+# frozen_string_literal: true
+
+require 'rails_helper'
+
+RSpec.describe 'User edits the report', type: :system do
+  before do
+    @user = FactoryBot.create(:user, email: 'testuser@example.com', password: 'password')
+    @report = FactoryBot.create(:report, user: @user, title: 'テスト日報', content: 'テストをします。')
+  end
+
+  it 'logs in and edits the report' do
+    visit new_user_session_path
+    fill_in 'Eメール', with: @user.email
+    fill_in 'パスワード', with: @user.password
+    click_button 'ログイン'
+
+    expect(page).to have_content('ログインしました。')
+
+    visit edit_report_path(@report.id)
+
+    expect(page).to have_field('タイトル')
+
+    fill_in 'タイトル', with: 'タイトルを編集した'
+    fill_in '内容', with: '編集のテストをしています。'
+    click_button '更新する'
+
+    expect(page).to have_content('タイトルを編集した')
+    expect(page).to have_content('編集のテストをしています。')
+  end
+end
