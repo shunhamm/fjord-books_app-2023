@@ -30,19 +30,11 @@ class Report < ApplicationRecord
     created_at.to_date
   end
 
-  def mentioning_reports
-    mentioned_by_reports.order(:id).presence
+  private
+
+  def link(mentioning_report)
+    return if self == mentioning_report
+
+    mentioned_by_reports.find_or_create_by!(mentioning_report_id: mentioning_report.id)
   end
-
-  def mentioned_reports
-    my_mentioned_by_reports.order(:id).presence
-  end
-end
-
-private
-
-def link(mentioning_report)
-  return if self == mentioning_report
-
-  mentioned_by_reports.find_or_create_by!(mentioning_report_id: mentioning_report.id)
 end
