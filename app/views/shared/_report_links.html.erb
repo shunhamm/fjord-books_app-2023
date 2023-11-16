@@ -1,10 +1,10 @@
 <div>
-  <% if (mentions_to_reports = @report.mentions_to_reports.order(:id).presence) %>
+  <% if (outgoing_mentions = @report.outgoing_mentions.order(:id).presence) %>
     <h3><%= t('.mentions') %></h3>
     <ul>
-      <% mentions_to_reports.each do |mentions_to_report| %>
+      <% outgoing_mentions.each do |outgoing_mention| %>
         <li>
-          <%= link_to "#{mentions_to_report.mentioned_report.user.name}: #{mentions_to_report.mentioned_report.title}", mentions_to_report.mentioned_report %>
+          <%= link_to "#{outgoing_mention.mentioned_report.user.name}: #{outgoing_mention.mentioned_report.title}", outgoing_mention.mentioned_report %>
         </li>
       <% end %>
     </ul>
