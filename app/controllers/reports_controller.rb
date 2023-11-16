@@ -21,12 +21,12 @@ class ReportsController < ApplicationController
   def create
     @report = current_user.reports.new(report_params)
 
-    redirect_to @report, notice: t('controllers.common.notice_create', name: Report.model_name.human) if @report.create_report_and_mention
+    redirect_to @report, notice: t('controllers.common.notice_create', name: Report.model_name.human) if @report.save_with_mentions
     render :new, status: :unprocessable_entity unless @report.persisted?
   end
 
   def update
-    redirect_to @report, notice: t('controllers.common.notice_update', name: Report.model_name.human) if @report.update_report_and_mention
+    redirect_to @report, notice: t('controllers.common.notice_update', name: Report.model_name.human) if @report.update_with_mentions(report_params)
     render :edit, status: :unprocessable_entity unless @report.persisted?
   end
 

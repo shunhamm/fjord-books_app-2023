@@ -13,20 +13,12 @@ class Report < ApplicationRecord
   validates :title, presence: true
   validates :content, presence: true
 
-  def create_report_and_mention
-    ActiveRecord::Base.transaction do
-      raise ActiveRecord::Rollback unless save
-
-      recreate_mentions
-    end
+  def save_with_mentions
+    perform_with_transaction { recreate_mentions if save }
   end
 
-  def update_report_and_mention
-    ActiveRecord::Base.transaction do
-      raise ActiveRecord::Rollback unless update
-
-      recreate_mentions
-    end
+  def update_with_mentions(report_params)
+    perform_with_transaction { recreate_mentions if update(report_params) }
   end
 
   def editable?(target_user)
@@ -39,14 +31,24 @@ class Report < ApplicationRecord
 
   private
 
+  def perform_with_transaction
+    ActiveRecord::Base.transaction do
+      yield
+    rescue StandardError => e
+      Rails.logger.error(e.message)
+      raise ActiveRecord::Rollback
+    end
+  end
+
   def recreate_mentions
     outgoing_mentions.destroy_all
-    mentioning_report_ids = content.scan(%r{http://127.0.0.1:3000/reports/(\d+)})
-
-    mentioning_report_ids.each do |id|
-      mentioning_report = Report.find(id[0])
-      create_mention(mentioning_report)
+    extract_mentioning_report_ids.each do |id|
+      create_mention(Report.find(id))
     end
+  end
+
+  def extract_mentioning_report_ids
+    content.scan(%r{http://127.0.0.1:3000/reports/(\d+)}).map(&:first)
   end
 
   def create_mention(mentioning_report)
