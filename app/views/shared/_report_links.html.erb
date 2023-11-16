@@ -1,5 +1,5 @@
 <div>
-  <% if (outgoing_mentions = @report.outgoing_mentions.order(:id).presence) %>
+  <% if outgoing_mentions %>
     <h3><%= t('.mentions') %></h3>
     <ul>
       <% outgoing_mentions.each do |outgoing_mention| %>
