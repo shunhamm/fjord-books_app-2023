@@ -17,8 +17,8 @@ class Report < ApplicationRecord
     mentioning_report_ids = content.scan(%r{http://127.0.0.1:3000/reports/(\d+)})
 
     mentioning_report_ids.each do |id|
-      mentioning_report = Report.find(id[0].to_i)
-      link(mentioning_report)
+      mentioning_report = Report.find(id[0])
+      create_mention_link(mentioning_report)
     end
   end
 
@@ -32,7 +32,7 @@ class Report < ApplicationRecord
 
   private
 
-  def link(mentioning_report)
+  def create_mention_link(mentioning_report)
     return if id == mentioning_report.id
 
     mentioning_report.outgoing_mentions.find_or_create_by!(mentioned_report: self)
