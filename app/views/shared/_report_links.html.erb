@@ -1,0 +1,12 @@
+<div>
+  <% if outgoing_mentions %>
+    <h3><%= t('.mentions') %></h3>
+    <ul>
+      <% outgoing_mentions.each do |outgoing_mention| %>
+        <li>
+          <%= display_mentioned_reports(outgoing_mention) %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
